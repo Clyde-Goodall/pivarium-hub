@@ -1,0 +1,64 @@
+body,
+html {
+    background: rgba(20, 20, 20, .02);
+}
+
+.mdl-textfield-watchlist {
+    padding: 0px;
+    width: 90px;
+}
+
+tr {
+    border-right: none;
+    border-left: none;
+}
+
+.mdl-data-table {
+    border-left: none;
+    border-right: none;
+}
+
+.mdl-container {
+    width: 100%;
+    height: 100%;
+}
+
+.mdl-cell-watchlist {
+    width: auto;
+    height: 75vh;
+    overflow-y: scroll;
+    scrollbar-width: none;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+    background: white;
+}
+
+.mdl-tbody {
+    scrollbar-width: none;
+    overflow-y: scroll;
+}
+
+.mdl-cell-watchlist::-webkit-scrollbar {
+    display: none;
+}
+
+#watchlist-table {
+    box-shadow: none;
+}
+
+.mdl-watchlist-entry {
+    border-bottom: none;
+    max-width: 10vw;
+}
+
+.mdl-cell-charts {
+    width: 75vw;
+    height: 92vh;
+    overflow-y: scroll;
+    scrollbar-width: none;
+}
+
+.mdl-card {
+    z-index: 2000;
+}
+
+.mdl-layout__header {}

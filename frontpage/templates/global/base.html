@@ -1,0 +1,29 @@
+{% comment %} 
+
+HTML file to be used as base for all user-facing pages,
+ALL imports go here that are to be used unless it is a specific library
+
+
+{% endcomment %}
+
+<!DOCTYPE html>
+<!-- css includes -->
+{% load static %}
+<link href="{% static 'mdl/material.css' %}" rel="stylesheet" type="text/css">
+<link href="{% static 'mdl/extra.css' %}" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css2?family=Material+Icons"
+      rel="stylesheet">
+</head>
+<body>
+
+    
+      {% block content %}
+      {% endblock %}
+
+   
+
+</body>
+<script type="text/javascript" src="{% static 'scripts/jquery-3.5.1.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'mdl/material.js' %}"></script>
+<script type="text/javascript" src="{% static 'scripts/socket.js' %}"></script>
+<script type="text/javascript" src="{% static 'scripts/listeners.js' %}"></script>
