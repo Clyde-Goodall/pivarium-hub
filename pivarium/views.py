@@ -15,7 +15,7 @@ def station(request, sid):
         request = request,
         template_name="frontpage/station.html",
         context= {
-            'current_station' : Station.objects.filter(sid=sid),
+            'current_station' : Station.objects.filter(sid=sid)[0],
             'stations': Station.objects.all}
     )
     

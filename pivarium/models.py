@@ -24,7 +24,6 @@ class Station(models.Model):
     
     title = models.CharField(max_length=20, default="Raspberry Pi")
     sid = models.CharField(max_length=15, default="None")
-   
     color = RGBColorField(default='#FF0000')
     desc = models.TextField(default="Data channel source")
     def __str__(self):

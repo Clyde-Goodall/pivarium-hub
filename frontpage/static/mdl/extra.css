@@ -61,4 +61,8 @@ tr {
     z-index: 2000;
 }
 
+.splash_image {
+    opacity: 0.3;
+}
+
 .mdl-layout__header {}

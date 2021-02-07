@@ -3,32 +3,6 @@
 
 {% block content %}
 
-
-<div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
-  <header class="mdl-layout__header">
-    <div class="mdl-layout__header-row">
-      <!-- Title -->
-      <span class="mdl-layout-title splash">Single Station View</span>
-      <!-- Add spacer, to align navigation to the right -->
-      <div class="mdl-layout-spacer"></div>
-      <!-- Navigation. We hide it in small screens. -->
-      <nav class="mdl-navigation mdl-layout--large-screen-only">
-        
-      </nav>
-    </div>
-  </header>
-  <div class="mdl-layout__drawer">
-    <span class="mdl-layout-title"><span class="splash"><a href="/"><img src="{% static 'img/pi_dark.png' %} " id="splash_image" width="42" height="42"></a></span></span>
-    <nav class="mdl-navigation">
-    {% for s in stations %}
-      <a class="mdl-navigation__link" id="{{s.sid}}" href="#"><strong>{{s.title}}</strong><br>{{s.desc}}</a>
-
-    {% empty %}
-      <a class="mdl-navigation__link" id="" href="#">Connect a station to get started</a>
-
-    {% endfor %}
-    </nav>
-  </div>
   <main class="mdl-layout__content">
  
     <div id="override">
@@ -39,7 +13,6 @@
 
 
   </main>
-</div> 
 
 {% comment %} 
 Home page for all users
