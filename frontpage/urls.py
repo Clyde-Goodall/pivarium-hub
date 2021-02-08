@@ -17,6 +17,8 @@ from django.contrib import admin
 from django.urls import path, re_path, include
 from pivarium import views
 
+#path for home, individual station view, and admin. 
+#Will be adding a settings page, but may use a modal dialogue instead
 urlpatterns = [
     path("", views.home, name="home"),
     path("stations/<sid>", views.station, name="Station view"),

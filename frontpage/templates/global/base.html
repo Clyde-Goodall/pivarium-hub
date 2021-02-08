@@ -7,10 +7,11 @@ ALL imports go here that are to be used unless it is a specific library
 {% endcomment %}
 
 <!DOCTYPE html>
+<!-- all client-facing pages inherit from this for consistency -->
 <!-- css includes -->
 {% load static %}
-<link href="{% static 'mdl/material.css' %}" rel="stylesheet" type="text/css">
-<link href="{% static 'mdl/extra.css' %}" rel="stylesheet" type="text/css">
+<link href="{% static 'css/material.css' %}" rel="stylesheet" type="text/css">
+<link href="{% static 'css/extra.css' %}" rel="stylesheet" type="text/css">
 <link href="https://fonts.googleapis.com/css2?family=Material+Icons"
       rel="stylesheet">
 </head>

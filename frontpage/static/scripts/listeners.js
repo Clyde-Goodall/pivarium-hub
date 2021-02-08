@@ -1,3 +1,6 @@
+//for pulling data into charts and updating via websocket
+//still old code in here for reusability, but will be eventually removed
+
 $(document).ready(function() {
     //calls new socket from class in socket.js
     var socke = new createSocket("/ws/frontend/");
