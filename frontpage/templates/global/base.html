@@ -12,6 +12,7 @@ ALL imports go here that are to be used unless it is a specific library
 {% load static %}
 <link href="{% static 'css/material.css' %}" rel="stylesheet" type="text/css">
 <link href="{% static 'css/extra.css' %}" rel="stylesheet" type="text/css">
+<link href="{% static 'css/toastui-chart.min.css' %}" rel="stylesheet" type="text/css">
 <link href="https://fonts.googleapis.com/css2?family=Material+Icons"
       rel="stylesheet">
 </head>
@@ -53,6 +54,7 @@ ALL imports go here that are to be used unless it is a specific library
 <script> var current_station = "{{ current_station.sid }}";</script>
 {%endif%}
 <script type="text/javascript" src="{% static 'scripts/jquery-3.5.1.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'scripts/toastui-chart.min.js' %}"></script>
 <script type="text/javascript" src="{% static 'scripts/material.js' %}"></script>
 <script type="text/javascript" src="{% static 'scripts/socket.js' %}"></script>
 <script type="text/javascript" src="{% static 'scripts/listeners.js' %}"></script>

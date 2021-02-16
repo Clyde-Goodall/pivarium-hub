@@ -1,24 +1,27 @@
 //for pulling data into charts and updating via websocket
 //still old code in here for reusability, but will be eventually removed
 
+
+
 $(document).ready(function() {
     //calls new socket from class in socket.js
     console.log(current_station);
     var interval = true;
-    var socke = new createSocket("/ws/frontend/");
-    socke.socket.onopen = function() {
+    var socket = new WebSocket('ws://' + window.location.host + '/ws/frontend/');
+
+    socket.onmessage = function(e) {
+        console.log("Message received: ");
+        ne = JSON.parse(e.data);
+        console.log(ne.data);
+        console.dir(ne.data[2]);
+    }
+
+
+    socket.onopen = function() {
         console.log("Established. Requesting data");
         data = '{ "first": "true", "chart": "true", "current_station": "' + current_station + '", "interval" : "' + interval + '"}';
-        socke.pushToServer(data);
+        socket.send(data);
     }
-
-    socke.socket.onmessage = function(e) {
-        alert(e.data);
-        console.log("Message received: ");
-        data = JSON.parse('' + e.data + '');
-        console.log(data.data);
-    }
-
 
 
     //adds first pull to chart
@@ -33,7 +36,7 @@ $(document).ready(function() {
         //action: update,delete, or submit
         json = '{ "action": "update", "old":"' + oldS + '" , "new" : "' + newS + '"}';
 
-        socke.pushToServer(json);
+        socket.send(json);
 
     }
 

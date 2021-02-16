@@ -75,19 +75,18 @@ class FrontEndConsumer(AsyncJsonWebsocketConsumer):
         text_data = json.loads(text_data)
         # response = JsonResponse([text_data], safe=False)
         if(text_data['first'] == "true"):
-            await self.pull_recent_top(text_data['current_station'], text_data['interval'])
+            fresh_pull = await self.pull_recent_top(text_data['current_station'], text_data['interval'])
+            await self.send_json(fresh_pull)
 
     @sync_to_async
     def pull_recent_top(self, station_id, interval):
-
-        print(StationData.objects.filter(sid=station_id))
-        self.send(
-            text_data=str(json.dumps(
-                {
-                    "data" : serializers.serialize('json', StationData.objects.filter(sid=station_id), ensure_ascii=False)
+ 
+        json_pull = {
+                    "data" : serializers.serialize('json', StationData.objects.filter(sid=station_id), ensure_ascii=False)[2:-2]
                 }
-            ))
-        )
-        print(serializers.serialize('json', StationData.objects.filter(sid=station_id), ensure_ascii=False))
-        print("sent")
+
+        return json_pull
+            
+        
+        
 
