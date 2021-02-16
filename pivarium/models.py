@@ -37,14 +37,17 @@ class StationData(models.Model):
     
     sid = models.CharField(max_length=15, default="None")#refers to Station
     value = models.FloatField()
-    timestamp = models.DateTimeField(auto_now_add=True) # handled autpomatically
+    timestamp = models.DateTimeField(auto_now_add=True) # handled automatically
     sensor_type = models.CharField(max_length=15, default="unknown")
     station = models.ForeignKey(Station, on_delete=models.CASCADE, default=0)
    
     def __str__(self):
-        return self.value
+        return self.timestamp.strftime('%m %d %Y, %H:%M:%S')
 
 class ClientSettings(models.Model):
+
+    class Meta():
+        verbose_name_plural = "Client Settings"
 
     poll_time = models.IntegerField(default=10)
 

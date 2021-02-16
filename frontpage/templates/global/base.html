@@ -34,7 +34,7 @@ ALL imports go here that are to be used unless it is a specific library
     <span class="mdl-layout-title"><span class="splash"><a href="/"><img src="{% static 'img/pi_dark.png' %} " class="splash_image" style="opacity: .7;" width="42" height="42"></a> </span></span>
     <nav class="mdl-navigation">
     {% for s in stations %}
-      <a class="mdl-navigation__link" id="" href="/stations/{{s.sid}}"><strong>{{s.title}} {{s.id}}</strong><br>{{s.desc}}</a>
+      <a class="mdl-navigation__link" id="" href="{% url 'stations_individual' s.sid %}"><strong>{{s.title}} {{s.id}}</strong><br>{{s.desc}}</a>
 
     {% empty %}
       <a class="mdl-navigation__link" id="" href="#">Connect a station to get started</a>
@@ -49,7 +49,10 @@ ALL imports go here that are to be used unless it is a specific library
    </div> 
 
 </body>
+{% if current_station %}
+<script> var current_station = "{{ current_station.sid }}";</script>
+{%endif%}
 <script type="text/javascript" src="{% static 'scripts/jquery-3.5.1.min.js' %}"></script>
-<script type="text/javascript" src="{% static 'mdl/material.js' %}"></script>
+<script type="text/javascript" src="{% static 'scripts/material.js' %}"></script>
 <script type="text/javascript" src="{% static 'scripts/socket.js' %}"></script>
 <script type="text/javascript" src="{% static 'scripts/listeners.js' %}"></script>

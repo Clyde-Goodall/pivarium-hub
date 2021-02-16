@@ -21,6 +21,6 @@ from pivarium import views
 #Will be adding a settings page, but may use a modal dialogue instead
 urlpatterns = [
     path("", views.home, name="home"),
-    path("stations/<sid>", views.station, name="Station view"),
+    path("stations/<sid>", views.station, name="stations_individual"),
     path('admin/', admin.site.urls),
 ]

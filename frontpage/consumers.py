@@ -1,9 +1,10 @@
-from channels.generic.websocket import AsyncWebsocketConsumer
+from channels.generic.websocket import AsyncWebsocketConsumer, AsyncJsonWebsocketConsumer
 from pivarium.models import Station, StationData, Sensor
 from asgiref.sync import sync_to_async
 import json
 from channels.consumer import SyncConsumer
 from django.http import JsonResponse
+from django.core import serializers
 
 #Where all data from each station goes. 
 #Registers new station if hex mac addr. isn't found in model, does nothing and continues to submit data otherwise
@@ -48,7 +49,7 @@ class StationConsumer(AsyncWebsocketConsumer):
     #submits to station data mode
     @sync_to_async
     def submit_measurement(self, data):
-        StationData(sid=data['station_id'], value=data['data'], timestamp=data['timestamp'], sensor_type=data['sensor_type'])
+        StationData(sid=data['station_id'], value=data['data'], timestamp=data['timestamp'], sensor_type=data['sensor_type'], station=Station.objects.filter(sid=data['station_id'])[0]).save()
         print("data tick added")
 
     # @sync_to_async
@@ -58,7 +59,7 @@ class StationConsumer(AsyncWebsocketConsumer):
 #sends chart data over to client. Sends first X amount of entries if it is a fresh connection
 #will send new updates at X interval according to client parameters, stored in client setings model,
 #agnostic of update interval from pi. Will consider adding "real-time" option, but not the default.
-class DataSyncConsumer(AsyncWebsocketConsumer):
+class FrontEndConsumer(AsyncJsonWebsocketConsumer):
 
     async def connect(self):
 
@@ -69,4 +70,24 @@ class DataSyncConsumer(AsyncWebsocketConsumer):
     async def disconnect(self, close_code):
         
         pass
+
+    async def receive(self, text_data):
+        text_data = json.loads(text_data)
+        # response = JsonResponse([text_data], safe=False)
+        if(text_data['first'] == "true"):
+            await self.pull_recent_top(text_data['current_station'], text_data['interval'])
+
+    @sync_to_async
+    def pull_recent_top(self, station_id, interval):
+
+        print(StationData.objects.filter(sid=station_id))
+        self.send(
+            text_data=str(json.dumps(
+                {
+                    "data" : serializers.serialize('json', StationData.objects.filter(sid=station_id), ensure_ascii=False)
+                }
+            ))
+        )
+        print(serializers.serialize('json', StationData.objects.filter(sid=station_id), ensure_ascii=False))
+        print("sent")
 

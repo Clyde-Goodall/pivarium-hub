@@ -13,7 +13,7 @@ websockets = URLRouter([
     ),
     path(
         "ws/frontend/",
-        consumers.DataSyncConsumer.as_asgi()
+        consumers.FrontEndConsumer.as_asgi()
     )
 ])
 
